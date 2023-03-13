@@ -3,6 +3,10 @@ spring:
     open-in-view: false
 
 management:
+  endpoint:
+    health:
+      show-components: always
+     #show-details: always
   endpoints:
     web:
       exposure:
