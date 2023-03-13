@@ -1,1 +1,2 @@
-# inflearn-springboot-core-and-use
+# 저장소 설명
+인프러 `스프링부트 - 핵심 원리와 활용` 실습 코드 저장소
