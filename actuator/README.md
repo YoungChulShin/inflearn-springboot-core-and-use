@@ -12,3 +12,6 @@ management:
         include: "*"
        #include: "info, health"
 ```
+전체 Endpoints 정보
+- https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html#actuator.endpoints
+
