@@ -28,3 +28,19 @@ endpoint:
 
 레퍼런스
 - https://docs.spring.io/spring-boot/docs/current/reference/html/actuator.html#actuator.endpoints.health
+
+### 보안
+actuator 포트 변경
+```yaml
+management:
+  server:
+    port: 9092
+```
+
+base url 변경
+```yaml
+management:
+  endpoints:
+    web:
+      base-path: "/manage"
+```

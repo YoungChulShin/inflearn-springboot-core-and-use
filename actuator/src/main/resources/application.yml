@@ -3,6 +3,8 @@ spring:
     open-in-view: false
 
 management:
+#  server:
+#    port: 9092
   endpoint:
     health:
       show-components: always
@@ -11,3 +13,4 @@ management:
     web:
       exposure:
         include: "*"
+#      base-path: "/manage"
