@@ -1,5 +1,5 @@
-# Spring Actuator 
-## Actuator 기본
+# Spring 모니터링 
+## Actuator
 기본 Url
 - '/actuator' 로 들어가면 등록된 동작을 확인할 수 있다
 
@@ -44,3 +44,11 @@ management:
     web:
       base-path: "/manage"
 ```
+
+## 마이크로미터
+개념
+- 표준 측정 방식을 제공한다
+- overview
+   ![overview](/images/micrometer_overview.png)
+- 표준 측정 방식을 이용해서 데이터를 수집하고, 모니터링 툴 구현체에 맞게 변환해준다
+
