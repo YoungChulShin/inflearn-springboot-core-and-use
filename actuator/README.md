@@ -71,6 +71,17 @@ server:
 ## 프로메테우스
 개념
 - 메트릭 정보를 보관하는 DB
+- 공식 사이트: https://prometheus.io
+
+설치 및 실행
+- 설치: homebrew 사용
+   ```
+   brew install prometheus
+   ```
+- 실행
+   ```
+   '/opt/homebrew/etc' 경로로 이동해서 prometheus를 실행한다
+   ```
 
 ## 그라파나
 개념
