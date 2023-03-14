@@ -74,14 +74,48 @@ server:
 - 공식 사이트: https://prometheus.io
 
 설치 및 실행
-- 설치: homebrew 사용
+- 설치 1: homebrew
    ```
+   // 설치
    brew install prometheus
-   ```
-- 실행
-   ```
+
+   // 설정 파일이 포함된 곳에서 prometheus 실행
    '/opt/homebrew/etc' 경로로 이동해서 prometheus를 실행한다
    ```
+- 설치 2: 직접 다운로드해서 사용
+   - homepage에서 파일을 다운받는다
+   - mac의 경우 '보안 및 개인정보' 탭에서 prometheus가 실행될 수 있도록 허용한다
+   - 다운받은 폴더에서 'prometheus'를 실행한다
+- 접속은 `'localhost:9090'` 으로 접속한다
+
+스프링 연동
+- 마이크로미터 의존성 추가
+   ```
+   implementation 'io.micrometer:micrometer-registry-prometheus'
+   ```
+  - 이 의존성이 추가되면 'actuator' 정보에 'prometheus'가 추가된다. 
+     ```
+     "prometheus": {
+      "href": "http://localhost:8080/actuator/prometheus",
+      "templated": false
+     },
+     ```
+- 프로메테우스 설정에서 job 추가
+   - `'prometheus.yml'` 파일에 job을 추가한다
+   - 'scrape_configs' 하위에 추가한다
+      ```yml
+      # spring job
+      - job_name: "spring actuator"
+        metrics_path: '/actuator/prometheus'  # 메트릭 수집 경로
+        scrape_interval: 1s # 메트릭 수집 주기
+        static_configs:
+          - targets: ["localhost:8080"] # 서버 정보
+      ```
+  - '수집 주기'는 기본 값은 1분이고, 상용에서는 서버 부하를 고려해서 10m ~ 1m 정도로 설정한다. 
+- 설정 파일 변경 이후에 프로메테우스 재실행
+   - 'status -> configuration' 로 들어가면 수정한 설정 정보를 확인할 수 있다
+   - 'status -> targets' 로 들어가면 target 정보 및 상태를 알 수 있다
+   
 
 ## 그라파나
 개념
