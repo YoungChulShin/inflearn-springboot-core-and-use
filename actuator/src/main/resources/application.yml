@@ -14,3 +14,8 @@ management:
       exposure:
         include: "*"
 #      base-path: "/manage"
+
+server:
+  tomcat:
+    mbeanregistry:
+      enabled: true

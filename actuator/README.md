@@ -45,6 +45,22 @@ management:
       base-path: "/manage"
 ```
 
+### 톰캣
+톰캣 관련 지표 활성화
+```yaml
+server:
+  tomcat:
+    mbeanregistry:
+      enabled: true
+```
+- 위 지표를 활성화하면 톰캣 관련 더 많은 지표를 볼 수 있다
+- 유용한 지표
+   ```
+   "tomcat.threads.busy"
+   "tomcat.threads.config.max"
+   "tomcat.threads.current"
+   ```
+
 ## 마이크로미터
 개념
 - 표준 측정 방식을 제공한다
