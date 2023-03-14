@@ -68,3 +68,15 @@ server:
    ![overview](/images/micrometer_overview.png)
 - 표준 측정 방식을 이용해서 데이터를 수집하고, 모니터링 툴 구현체에 맞게 변환해준다
 
+## 프로메테우스
+개념
+- 메트릭 정보를 보관하는 DB
+
+## 그라파나
+개념
+- 메트릭 정보를 보여주는 대시보드
+
+## 전체 연동
+![grafana-prometheus](/images/grafana-prometheus.png)
+
+![prometheus](/images/prometheus.png)
