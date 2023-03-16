@@ -115,6 +115,22 @@ server:
 - 설정 파일 변경 이후에 프로메테우스 재실행
    - 'status -> configuration' 로 들어가면 수정한 설정 정보를 확인할 수 있다
    - 'status -> targets' 로 들어가면 target 정보 및 상태를 알 수 있다
+
+레이블 일치 연산자
+- `'='`: 동일한 값 선택
+- `'!='`: 다른 값 선택
+- `'=~'`: 정규식이 일치하는 값 선택
+- `'!~'`: 정규식이 일치하지 않는 값 선택
+   ```
+   // uri = /log, method = GET
+   {uri="/log", method="GET"}
+
+   // GET or POST
+   {method=~"GET|POST"}
+
+   // acuator로 시작하는 것 제외
+   {uri!~"/actuator.*"}
+   ```
    
 
 ## 그라파나
