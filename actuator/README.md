@@ -149,6 +149,16 @@ server:
 개념
 - 메트릭 정보를 보여주는 대시보드
 
+설치
+- 직접 다운로드 방법
+   1. homepage에서 [다운로드](https://grafana.com/grafana/download?platform=mac)
+   2. 압축을 풀고, bin 폴더에서 `'grafana-server'` 실행
+   3. 'localhost:3000' 접속
+
+
+
+
+
 ## 전체 연동
 ![grafana-prometheus](/images/grafana-prometheus.png)
 
