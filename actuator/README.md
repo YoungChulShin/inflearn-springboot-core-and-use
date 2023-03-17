@@ -162,6 +162,12 @@ server:
 4. 'Save & test' 버튼 클릭 
 5. 'configuration'을 다시 들어오면 prometheus 등록 확인
 
+대시보드 활용
+- https://grafana.com/grafana/dashboards/
+- 키워드로 검색할 수 있다. 예: spring
+   - https://grafana.com/grafana/dashboards/4701-jvm-micrometer/
+   - https://grafana.com/grafana/dashboards/11378-justai-system-monitor/
+
 
 
 ## 전체 연동
