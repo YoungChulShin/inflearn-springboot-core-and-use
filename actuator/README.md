@@ -155,7 +155,12 @@ server:
    2. 압축을 풀고, bin 폴더에서 `'grafana-server'` 실행
    3. 'localhost:3000' 접속
 
-
+프로메테우스 연동
+1. 'configuration' -> 'add datasource'
+2. prometheus 선택
+3. 프로메테우스 url 입력. (예: http://localhost:9090)
+4. 'Save & test' 버튼 클릭 
+5. 'configuration'을 다시 들어오면 prometheus 등록 확인
 
 
 
