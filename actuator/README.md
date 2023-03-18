@@ -61,6 +61,38 @@ server:
    "tomcat.threads.current"
    ```
 
+### Custom metric - Counter
+개념
+- 시간이 지날 수록 값이 증가하는 카운터 메트릭을 등록한다
+
+방법 1 - `Counter`를 이용해서 직접 등록하는 방법
+```java
+// my.order 로 메트릭이 등록된다
+// tag를 이용해서 프로메테우스에서 값을 조회할 수 있다
+Counter.builder("my.order")
+        .tag("class", this.getClass().getName())
+        .tag("method", "order")
+        .description("order")
+        .register(registry).increment();
+```
+
+방법 2 - `'@Counted'` 애노테이션 사용
+1. 메트릭을 적용할 메서드에 애노테이션 적용
+   ```java
+   // my.order로 메트릭이 등록
+   // 클래스, 메서드 명 등이 태그로 등록된다
+   @Counted("my.order")
+   public void order() { }
+   ```
+2. 애노테이션이 동작할 수 있도록 Aspect 등록
+   ```java
+   @Bean
+   public CountedAspect countedAspect(MeterRegistry registry) {
+     return new CountedAspect(registry);
+   }
+   ```
+
+
 ## 마이크로미터
 개념
 - 표준 측정 방식을 제공한다
@@ -167,8 +199,6 @@ server:
 - 키워드로 검색할 수 있다. 예: spring
    - https://grafana.com/grafana/dashboards/4701-jvm-micrometer/
    - https://grafana.com/grafana/dashboards/11378-justai-system-monitor/
-
-
 
 ## 전체 연동
 ![grafana-prometheus](/images/grafana-prometheus.png)
