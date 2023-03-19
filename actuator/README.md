@@ -180,7 +180,7 @@ public MeterBinder stockSize(OrderService orderService) {
 개념
 - 표준 측정 방식을 제공한다
 - overview
-   ![overview](/images/micrometer_overview.png)
+   ![overview](/actuator/images/micrometer_overview.png)
 - 표준 측정 방식을 이용해서 데이터를 수집하고, 모니터링 툴 구현체에 맞게 변환해준다
 
 ## 프로메테우스
@@ -284,9 +284,9 @@ public MeterBinder stockSize(OrderService orderService) {
    - https://grafana.com/grafana/dashboards/11378-justai-system-monitor/
 
 ## 전체 연동
-![grafana-prometheus](/images/grafana-prometheus.png)
+![grafana-prometheus](/actuator/images/grafana-prometheus.png)
 
-![prometheus](/images/prometheus.png)
+![prometheus](/actuator/images/prometheus.png)
 
 ## 실무 팁
 모니터링 3단계
