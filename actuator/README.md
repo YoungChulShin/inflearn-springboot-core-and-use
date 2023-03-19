@@ -287,3 +287,26 @@ public MeterBinder stockSize(OrderService orderService) {
 ![grafana-prometheus](/images/grafana-prometheus.png)
 
 ![prometheus](/images/prometheus.png)
+
+## 실무 팁
+모니터링 3단계
+- 대시보드
+- 애플리케이션 추적 
+- 로그
+
+대시보드
+- 전체를 한번에 볼 수 있는 뷰
+- 제품: 마이크로미터, 프로메테우스, 그라파나 등
+- 대상
+   - 시스템 메트릭: CPU, 메모리
+   - 에플리케이션 메트릭: 톰캣 스레드풀, DB 커넥션 풀, 애플리케이션 호출 수 등
+   - 비지니스 메트릭: 주문 수, 취소 수 등
+
+애플리케이션 추적
+- 각각의 http를 추적하거나 msa에서 분산추적
+- 제품: 핀포인트, 스카우트, 와탭, 제니퍼
+
+알람 
+- 경고와 심각으로 분리해서 관리해야한다
+- 경고: 하루에 한번정도 사람이 들어가서 확인하면 되는 수준
+- 심각: 즉시 확인해야 한다
