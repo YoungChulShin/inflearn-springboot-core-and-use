@@ -92,6 +92,60 @@ Counter.builder("my.order")
    }
    ```
 
+### Custom metric - Timer
+개념
+- 요청의 누적실행 시간, 누적 실행 횟수, 최대 실행 시간을 확인할 수 있다
+- 누적실행 시간과 누적실행 횟수를 이용하면 평균 실행시간을 구할 수 있다
+
+메트릭 정보
+```
+my_order_seconds_count: 누적 실행 횟수
+my_order_seconds_sum: 누적 실행 시간
+my_order_seconds_max: 최대 실행 시간
+```
+
+방법 1 - `Timer`를 이용해서 직접 등록하는 방법
+```java
+@Override
+public void order() {
+   // time 구현체를 생성. 
+   // my.order 로 메트릭을 등록한다
+   Timer timer = Timer.builder("my.order")
+      .tag("class", this.getClass().getName())
+      .tag("method", "order")
+      .description("order")
+      .register(registry);
+
+   // 시간을 측정할 부분을 record() 메서드를 이용해서 감싸준다
+   timer.record(() -> {
+   log.info("주문");
+   stock.decrementAndGet();
+   sleep(500);
+   });
+}
+```
+
+방법 2- `'@Timed'` 애노테이션을 이용해서 등록하는 방법
+1. 메트릭을 적용할 메서드에 애노테이션 추가
+   ```java
+   // my.order 타이머 메트릭이 등록된다
+   @Timed("my.order")
+   public void order() { {}
+   ```
+2. 애노테이션을 활성화하기 위해서 `TimedAspect`를 빈으로 등록해준다
+   ```java
+   @Bean
+   public TimedAspect timedAspect(MeterRegistry registry) {
+     return new TimedAspect(registry);
+   }
+   ```
+
+기타
+- 구간별 평균 실행 시간을 구하려면 'increase' 함수로 묶어 준다
+   ```
+   increase(my_order_seconds_sum[1m]) / increase(my_order_seconds_count[1m])
+   ```
+
 
 ## 마이크로미터
 개념
