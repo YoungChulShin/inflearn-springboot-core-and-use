@@ -146,6 +146,35 @@ public void order() {
    increase(my_order_seconds_sum[1m]) / increase(my_order_seconds_count[1m])
    ```
 
+### Custom metric - Gauge
+개념
+- 시간이 지나면서 값이 올라가거나 내려가는 지표
+
+방법 1 - 빈으로 Gauge를 직접 등록하는 방법
+```java
+// 프로메테우스가 메트릭을 조회하는 주기마다 메서드를 호출한다
+@PostConstruct
+public void init() {
+   Gauge.builder("my.stock", orderService, service -> {
+      log.info("stock gauge call");
+      return service.getStock().get();
+   }).register(registry);
+}
+```
+
+방법 2 - MeterBinder 구현체를 등록
+```java
+// MeterBinder 구현체를 등록하면 프로
+@Bean
+public MeterBinder stockSize(OrderService orderService) {
+   return registry -> Gauge.builder("my.stock", orderService, service -> {
+   log.info("stock gauge call");
+   return service.getStock().get();
+   }).register(registry);
+}
+```
+
+
 
 ## 마이크로미터
 개념
