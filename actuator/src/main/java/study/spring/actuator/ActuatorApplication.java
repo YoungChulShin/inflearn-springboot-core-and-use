@@ -7,10 +7,12 @@ import org.springframework.context.annotation.Import;
 import study.spring.actuator.order.v0.OrderConfigV0;
 import study.spring.actuator.order.v1.OrderConfigV1;
 import study.spring.actuator.order.v2.OrderConfigV2;
+import study.spring.actuator.order.v3.OrderConfigV3;
 
 //@Import(OrderConfigV0.class)
 //@Import(OrderConfigV1.class)
-@Import(OrderConfigV2.class)
+//@Import(OrderConfigV2.class)
+@Import(OrderConfigV3.class)
 @SpringBootApplication(scanBasePackages = "study.spring.actuator.controller")
 public class ActuatorApplication {
 
