@@ -31,3 +31,54 @@ war 배포
 2. '*.war' 파일의 이름을 'ROOT.war'로 변경한다
 3. 톰캣을 실행한다
 4. 톰캣이 ROOT.war 파일의 압축을 푼다
+
+## Servlet
+Servlet을 컨테이너에 등록 방법
+1. `WebServlet` 애노테이션 사용
+   ```java
+   @WebServlet(urlPatterns = "/test")
+   public class TestServlet extends HttpServlet {
+   ```
+2. 직접 서블릿을 생성해서 등록하는 방법
+   1. servlet 생성
+      ```java
+      public class HelloServlet extends HttpServlet {
+
+         @Override
+         protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+            System.out.println("HelloServlet.service");
+            resp.getWriter().println("hello servlet");
+         }
+      }
+      ```
+   2. 생성한 서블릿을 context에 등록하는 코드 작성. Interface가 있어야한다
+      ```java
+      public class AppInitV1Servlet implements AppInit {
+
+      `  @Override
+         public void onStartUp(ServletContext servletContext) {
+            // 순수 서블릿 코드 등록
+            Dynamic helloServlet = servletContext.addServlet("helloServlet", new HelloServlet());
+            helloServlet.addMapping("/hello-servlet");
+         }
+      }
+      ```
+   3. 서블릿 컨테이너 초기화 코드에서 앞에서 생성한 서블릿을 컨텍스트에 등록하는 코드 작성
+      ```java
+      // 이 인터페이스를 구현한 클래스를 'Set<Class<?>> c'에 넘겨준다
+      @HandlesTypes(AppInit.class)
+      public class MyContainerInitV2 implements ServletContainerInitializer {
+
+      @Override
+      public void onStartup(Set<Class<?>> c, ServletContext ctx) throws ServletException {
+         for (Class<?> appInitClass : c) {
+            try {
+            var appInit = (AppInit)appInitClass.getDeclaredConstructor().newInstance();
+            appInit.onStartUp(ctx);
+            } catch (Exception e) {
+            throw new RuntimeException(e);
+            }
+         }
+      }
+      }`
+      ```
