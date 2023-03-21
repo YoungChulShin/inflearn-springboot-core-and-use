@@ -82,3 +82,33 @@ Servlet을 컨테이너에 등록 방법
       }
       }`
       ```
+## Servlet, Spring
+SpringController를 Servlet에 등록하는 방법
+1. 컨트롤러 생성 및 Configuration으로 등록
+2. 앱 초기화 인터페이스를 구현하는 구현체 생성
+3. 구현체에서 스프링 컨테이너 생성
+   ```java
+   AnnotationConfigWebApplicationContext appContext = new AnnotationConfigWebApplicationContext();
+   ```
+4. 스프링 컨테이너에 Configuration 등록
+   ```java
+   appContext.register(HelloConfig.class);
+   ```
+5. MVC dispatcher servlet 생성 및 스프링 컨터이네를 연결
+   ```java
+   // appContext가 스프링 컨테이너
+   DispatcherServlet dispatcher = new DispatcherServlet(appContext);
+   ```
+6. dispatcher servlet을 스프링 컨테이너에 등록
+   ```java
+   Dynamic servlet = servletContext.addServlet("dispatcherV2", dispatcher);
+   ```
+7. dispatcher servlet에 매핑 등록
+   ```java
+   // /spring/* 요청이 dispatcher servlet을 통하게 된다
+   servlet.addMapping("/spring/*");
+   ```
+8. 호출 테스트
+   ```
+   /spring/controller-url 을 입력하면 연결된다
+   ```
