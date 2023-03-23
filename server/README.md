@@ -33,6 +33,8 @@ war 배포
 4. 톰캣이 ROOT.war 파일의 압축을 푼다
 
 ## Servlet
+톰캣같은 WAS는 서블릿 스펙을 맞추고 있고, 서블릿 스펙에 맞춰서 동작하도록 구현해야한다. 
+
 Servlet을 컨테이너에 등록 방법
 1. `WebServlet` 애노테이션 사용
    ```java
@@ -129,3 +131,11 @@ WebApplicationInitializer 인터페이스 코드 확인
    public class SpringServletContainerInitializer implements ServletContainerInitializer {
    ```
 - 즉, 'WebApplicationInitializer'를 구현하는 클래스를 작성하면, 서블릿 컨테이너 초기화 이후에 앱 초기화과정에서 호출이 된다. 
+
+## 외장 서버, 내장 서버
+외장 서버
+- WAS(tomcat)에 WAR를 배포하는 방식. WAS를 실행해서 동작한다
+
+내장 서버
+- JAR안에 라이브러리와 WAS 라이브러리가 포함되는 방식. main()을 실행해서 동작한다. 
+
