@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+}
+
+group 'study.spring'
+version '1.0-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // 스프링 MVC 추가
+    implementation 'org.springframework:spring-webmvc:6.0.4'
+
+    // 내장 톰캣
+    implementation 'org.apache.tomcat.embed:tomcat-embed-core:10.1.5'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
