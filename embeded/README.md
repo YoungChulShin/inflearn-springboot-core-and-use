@@ -21,3 +21,25 @@
    ```
 5. 톰캣을 실행한다
 
+# 빌드
+Jar에 Main 클래스를 지정하는 방법
+- Jar task에 `Main-Class` attribute를 추가해준다
+   ```
+   manifest {
+        attributes 'Main-Class': 'hello.embed.EmbedTomcatSpringMain'
+   }
+   ```
+- 생성된 Jar를 풀어보면 `META-INF/MANIFEST.MF` 파일이 있다
+   ```
+   Manifest-Version: 1.0
+   Main-Class: hello.embed.EmbedTomcatSpringMain
+   ```
+
+FatJar, UberJar
+- 벼경
+   - 일반적인 Jar는 Jar를 포함할 수 없다. 이로 인해서 일반적으로 생성된 Jar 파일은 라이브러리를 포함할 수가 없어서 코드를 실행할 수 없다
+- FatJar 해결
+   - FatJar는 라이브러리의 클래스 파일을 모두 확인해서 Jar 파일에 넣어주는 방법으로 해결한다.
+- 문제
+   - 모두 클래스로 풀려있어서 라이브러리가 포함되어 있는지 확인하기 어렵다
+   - 파일명 중복을 해결할 수 없다
